@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+    #app 1
+    webapp1:
+        build: 
+            context: app
+            args:
+                name: "webapp1"
+                number: 1
+            dockerfile: Dockerfile
+        ports:
+            - "8081:80"
+    #app 2
+    webapp2:
+        build: 
+            context: app
+            args:
+                name: "webapp2"
+                number: 2
+            dockerfile: Dockerfile
+        ports:
+            - "8082:80"
+    #balancer
+    proxy:
+        build: proxy
+        ports:
+            - "8080:80" 

@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web1:
+    image: httpd
+    stdin_open: true
+    tty: true
+  web2:
+    image: httpd
+    stdin_open: true
+    tty: true
+
+  lb:
+    build: ./lb
+    links:
+        - web1
+        - web2
+    ports:
+    - 5000:80/tcp
